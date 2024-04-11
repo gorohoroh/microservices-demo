@@ -67,7 +67,7 @@ public class AdServiceClient {
     } catch (StatusRuntimeException e) {
       logger.log(Level.WARN, "RPC failed: " + e.getStatus());
       return;
-    } 
+    }
     for (Ad ads : response.getAdsList()) {
       logger.info("Ads: " + ads.getText());
     }
@@ -80,6 +80,7 @@ public class AdServiceClient {
         portNumber = Integer.parseInt(args[2]);
       } catch (NumberFormatException e) {
         logger.warn(String.format("Port %s is invalid, use default port %d.", args[2], 9555));
+        throw new RuntimeException(e.getMessage());
       }
     }
     return portNumber;
